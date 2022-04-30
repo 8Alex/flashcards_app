@@ -1,0 +1,25 @@
+@import '../vars.scss';
+
+.table__body td {
+  border-bottom: 1px solid #ccc;
+  padding: 9px 8px;
+}
+
+.table__hover:hover {
+  cursor: pointer;
+  color: #6699ff;
+}
+
+.table__input input {
+  color: $varColor;
+  font-size: 14px;
+  font-family: $defaultFont;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(238, 227, 227);
+}
+
+.table__icon {
+  display: flex;
+  flex-direction: row;
+}

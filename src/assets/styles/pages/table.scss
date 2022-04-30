@@ -1,0 +1,20 @@
+@import '../vars.scss';
+
+.table__container {
+  height: 100%;
+  margin-bottom: 10px;
+}
+
+.table__innerContainer {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  color: $varColor;
+}
+
+.table__head th {
+  border-bottom: 2px solid #6678b1;
+  padding: 10px 8px;
+}

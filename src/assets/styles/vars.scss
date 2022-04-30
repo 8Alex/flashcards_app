@@ -1,0 +1,20 @@
+/* Breakpoints */
+$smallMobile: 479px;
+$mobile: 639px;
+$tablet: 959px;
+$desktop: 1199px;
+
+/* Colors */
+$mainBgColor: #dd7979;
+$bgColor: #fff4f4;
+$textColor: #744343;
+$varColor: #669;
+$whiteColor: #ffffff;
+
+/* Fonts */
+$defaultFont: 'Montserrat', sans-serif;
+
+@font-face {
+  font-family: $defaultFont;
+  src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+}

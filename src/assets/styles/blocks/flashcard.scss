@@ -1,0 +1,44 @@
+@import '../vars.scss';
+
+.flashcard__item {
+  width: 350px;
+  height: 400px;
+  background-color: $mainBgColor;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $whiteColor;
+}
+
+.flashcard__english {
+  font-size: 30px;
+}
+
+.flashcard__transcription {
+  font-size: 20px;
+}
+
+.flashcard__button {
+  width: 40%;
+  height: 10%;
+  font-size: 16px;
+  background-color: $varColor;
+  border: none;
+  border-radius: 10px;
+  color: $whiteColor;
+  padding: 5px;
+  text-decoration: none;
+  margin-top: 100px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.flashcard__russian {
+  font-size: 20px;
+  color: $whiteColor;
+  margin-top: 100px;
+}

@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import PageHeader from './assets/components/Header';
+import PageFooter from './assets/components/Footer';
+import Table from './assets/components/Table';
+import Training from './assets/components/Training';
+import NoMatch from './assets/components/NoMatch';
+import './App.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='App'>
+        <PageHeader></PageHeader>
+        <main className='mainContainer'>
+          <Routes>
+            <Route path='/' element={<Table></Table>} />
+            <Route path='/game' element={<Training></Training>} />
+            <Route path='*' element={<NoMatch></NoMatch>} />
+          </Routes>
+        </main>
+        <PageFooter></PageFooter>
+      </div>
+    </Router>
   );
 }
 

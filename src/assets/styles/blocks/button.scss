@@ -1,0 +1,15 @@
+@import '../vars.scss';
+
+.button__icon {
+  padding: 5px;
+}
+
+.button__icon svg {
+  transition: 1s;
+  font-size: 18px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.4);
+  }
+}
