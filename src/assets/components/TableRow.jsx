@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/blocks/list.scss';
 import { PenIcon, TrashIcon, SaveIcon, CancelIcon } from './Button';
-// import useLocalStorage from '../hooks/useLocalStorage';
 
 const TableRow = (props) => {
   // const [english, setEnglish] = useState(props.english);
@@ -27,7 +26,10 @@ const TableRow = (props) => {
 
   const [edit, setEdit] = useState(false);
   const [state, setState] = useState(props);
-  // const [save, setSave] = useState();
+
+  useEffect(() => {
+    setState(props);
+  }, [props]);
 
   const handleCancel = () => {
     setEdit(false);
@@ -52,9 +54,8 @@ const TableRow = (props) => {
         }
       }
     });
-    localStorage.setItem('data', JSON.stringify(data));
+    props.onEdit(data);
     setEdit(false);
-    setState({ ...state });
   };
 
   if (edit) {
@@ -125,19 +126,3 @@ const TableRow = (props) => {
 };
 
 export default TableRow;
-
-// if (save) {
-//   return (
-//     <tbody>
-//       <tr className='table__body'>
-//         <td className='table__hover'>{state.number}</td>
-//         <td className='table__hover'>{state.english}</td>
-//         <td className='table__hover'>{state.transcription}</td>
-//         <td className='table__hover'>{state.russian}</td>
-//         <td className='table__hover'>{state.tags}</td>
-//         <td className='table__icon'>
-//           <PenIcon onClick={() => setEdit(true)}></PenIcon>
-//           <TrashIcon onClick={props.delete}></TrashIcon>
-//         </td>
-//       </tr>
-//     </tbody>

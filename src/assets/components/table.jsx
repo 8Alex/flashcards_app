@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/pages/table.scss';
-import TableRow from './List';
+import TableRow from './TableRow';
 import data from '../../data.json';
 
 const Table = () => {
@@ -18,6 +18,11 @@ const Table = () => {
 
   const handleDelete = (id) => {
     setData(newData.filter((word) => word.id !== id));
+    localStorage.setItem('data', JSON.stringify(newData));
+  };
+
+  const handleUpdateList = (newData) => {
+    setData(newData);
     localStorage.setItem('data', JSON.stringify(newData));
   };
 
@@ -46,6 +51,7 @@ const Table = () => {
             // isEdit={edit === i}
             // edit={() => setEdit(i)}
             // cancel={() => handleCancel(i)}
+            onEdit={handleUpdateList}
             delete={() => handleDelete(word.id)}
           ></TableRow>
         ))}
