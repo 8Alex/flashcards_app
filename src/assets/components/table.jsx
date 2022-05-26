@@ -10,9 +10,6 @@ const Table = () => {
   //   setEdit(!edit);
   // };
 
-  // localStorage.setItem('data', JSON.stringify(data));
-  // let arrayData = JSON.parse(localStorage.getItem('data'));
-
   const [newData, setData] = useState(data);
   localStorage.setItem('data', JSON.stringify(newData));
 
