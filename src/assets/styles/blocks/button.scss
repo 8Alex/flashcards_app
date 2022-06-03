@@ -13,3 +13,11 @@
     transform: scale(1.4);
   }
 }
+
+.button__icon_disabled svg {
+  opacity: 0.5;
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}

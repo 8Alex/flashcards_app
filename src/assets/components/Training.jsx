@@ -9,6 +9,8 @@ import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 const Training = ({ choosenCard = 0 }) => {
   const [index, setIndex] = useState(choosenCard);
+  const [count, setCount] = useState(0);
+  const [learnCard, setLearnCard] = useState([]);
 
   useEffect(() => {
     const newIndex = checkIndex(choosenCard);
@@ -32,6 +34,18 @@ const Training = ({ choosenCard = 0 }) => {
     setIndex(index + 1);
   }
 
+  const cardsCount = (id) => {
+    const newlearnCard = [...learnCard];
+
+    if (!newlearnCard.includes(id)) {
+      newlearnCard.push(id);
+      setLearnCard(newlearnCard);
+      setCount(count + 1);
+    } else {
+      setCount(count);
+    }
+  };
+
   const cards = data.map((card) => {
     return (
       <FlashCard
@@ -39,6 +53,7 @@ const Training = ({ choosenCard = 0 }) => {
         english={card.english}
         transcription={card.transcription}
         russian={card.russian}
+        cardsCount={() => cardsCount(card.id)}
       />
     );
   });
@@ -85,6 +100,7 @@ const Training = ({ choosenCard = 0 }) => {
           ''
         )}
       </div>
+      <div className='flashcard__learn'>Learned words:{count}</div>
     </div>
   );
 };

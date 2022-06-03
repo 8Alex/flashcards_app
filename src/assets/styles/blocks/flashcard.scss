@@ -35,6 +35,12 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:focus {
+    outline-style: outset;
+    outline-color: rgb(100, 100, 243);
+    outline-width: 2px;
+  }
 }
 
 .flashcard__russian {

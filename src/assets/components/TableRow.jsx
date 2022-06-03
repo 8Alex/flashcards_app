@@ -26,10 +26,16 @@ const TableRow = (props) => {
 
   const [edit, setEdit] = useState(false);
   const [state, setState] = useState(props);
+  const [errors, setErrors] = useState({});
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     setState(props);
   }, [props]);
+
+  useEffect(() => {
+    checkValidation();
+  }, [state]);
 
   const handleCancel = () => {
     setEdit(false);
@@ -41,6 +47,34 @@ const TableRow = (props) => {
       ...state,
       [event.target.dataset.name]: event.target.value,
     });
+  };
+
+  const checkValidation = () => {
+    const newErrors = Object.keys(state).reduce((account, item) => {
+      switch (item) {
+        case 'english':
+        case 'transcription':
+        case 'russian':
+        case 'tags':
+          account = {
+            ...account,
+            [item]:
+              state[item].trim().length > 0 ? undefined : 'Заполните поле',
+          };
+          break;
+      }
+      return account;
+    }, {});
+    setErrors(newErrors);
+
+    let disabledCheck = Object.keys(newErrors).some((item) => {
+      if (newErrors[item] === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setDisabled(disabledCheck);
   };
 
   const handleSave = () => {
@@ -55,6 +89,7 @@ const TableRow = (props) => {
       }
     });
     props.onEdit(data);
+    console.log(data);
     setEdit(false);
   };
 
@@ -63,7 +98,11 @@ const TableRow = (props) => {
       <tbody>
         <tr className='table__body'>
           <td className='table__hover'>{state.number}</td>
-          <td className='table__input'>
+          <td
+            className={
+              'table__input' + ' ' + (!errors.english ? '' : 'table__error')
+            }
+          >
             <input
               type='text'
               name='text'
@@ -71,8 +110,15 @@ const TableRow = (props) => {
               onChange={handleChange}
               data-name={'english'}
             ></input>
+            <span className='table__errorMessage'>{errors.english}</span>
           </td>
-          <td className='table__input'>
+          <td
+            className={
+              'table__input' +
+              ' ' +
+              (!errors.transcription ? '' : 'table__error')
+            }
+          >
             <input
               type='text'
               name='text'
@@ -80,8 +126,13 @@ const TableRow = (props) => {
               onChange={handleChange}
               data-name={'transcription'}
             ></input>
+            <span className='table__errorMessage'>{errors.transcription}</span>
           </td>
-          <td className='table__input'>
+          <td
+            className={
+              'table__input' + ' ' + (!errors.russian ? '' : 'table__error')
+            }
+          >
             <input
               type='text'
               name='text'
@@ -89,8 +140,13 @@ const TableRow = (props) => {
               onChange={handleChange}
               data-name={'russian'}
             ></input>
+            <span className='table__errorMessage'>{errors.russian}</span>
           </td>
-          <td className='table__input'>
+          <td
+            className={
+              'table__input' + ' ' + (!errors.tags ? '' : 'table__error')
+            }
+          >
             <input
               type='text'
               name='text'
@@ -98,9 +154,10 @@ const TableRow = (props) => {
               onChange={handleChange}
               data-name={'tags'}
             ></input>
+            <span className='table__errorMessage'>{errors.tags}</span>
           </td>
           <td className='table__icon'>
-            <SaveIcon onClick={handleSave}></SaveIcon>
+            <SaveIcon onClick={handleSave} disabled={disabled}></SaveIcon>
             <CancelIcon onClick={handleCancel}></CancelIcon>
           </td>
         </tr>
