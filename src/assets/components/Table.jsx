@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import '../styles/pages/table.scss';
 import TableRow from './TableRow';
 import data from '../../data.json';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Table = () => {
   // const [edit, setEdit] = useState();
@@ -10,17 +11,23 @@ const Table = () => {
   //   setEdit(!edit);
   // };
 
-  const [newData, setData] = useState(data);
-  localStorage.setItem('data', JSON.stringify(newData));
+  // const [newData, setData] = useState(data);
+  // localStorage.setItem('data', JSON.stringify(newData));
+
+  const [newData, setData] = useLocalStorage('data', data);
+
+  useEffect(() => {
+    setData(newData);
+  }, []);
 
   const handleDelete = (id) => {
     setData(newData.filter((word) => word.id !== id));
-    localStorage.setItem('data', JSON.stringify(newData));
+    // localStorage.setItem('data', JSON.stringify(newData));
   };
 
   const handleUpdateList = (newData) => {
     setData(newData);
-    localStorage.setItem('data', JSON.stringify(newData));
+    // localStorage.setItem('data', JSON.stringify(newData));
   };
 
   return (

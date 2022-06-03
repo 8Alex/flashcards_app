@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import '../styles/blocks/flashcard.scss';
 
 const FlashCard = (props) => {
   const [checked, setChecked] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => ref.current.focus(), [props.english]);
 
   const handleChange = () => {
     setChecked(!checked);
+    props.cardsCount();
   };
 
   return (
@@ -15,7 +19,7 @@ const FlashCard = (props) => {
       {checked ? (
         <div className='flashcard__russian'>{props.russian}</div>
       ) : (
-        <button className='flashcard__button' onClick={handleChange}>
+        <button className='flashcard__button' onClick={handleChange} ref={ref}>
           Проверить
         </button>
       )}

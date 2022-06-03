@@ -36,12 +36,16 @@ const TrashIcon = (props) => {
 
 const SaveIcon = (props) => {
   const handleSave = () => {
-    props.onClick(props.save);
+    if (!props.disabled) {
+      props.onClick(props.save);
+    }
   };
+
+  const disabledSave = props.disabled ? 'button__icon_disabled' : '';
 
   return (
     <div onClick={handleSave}>
-      <a className='button__icon'>
+      <a className={`button__icon ${disabledSave}`}>
         <FontAwesomeIcon icon={faFloppyDisk} />
       </a>
     </div>

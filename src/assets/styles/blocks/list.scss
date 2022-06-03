@@ -23,3 +23,13 @@
   display: flex;
   flex-direction: row;
 }
+
+.table__error input {
+  border-bottom: 1px solid red;
+}
+
+.table__errorMessage {
+  font-size: 12px;
+  color: red;
+  padding: 5px;
+}
