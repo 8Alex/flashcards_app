@@ -21,3 +21,12 @@
     cursor: not-allowed;
   }
 }
+
+.button__icon_plus {
+  margin-left: 200px;
+}
+
+.button__icon_plus svg {
+  font-size: 20px;
+  color: $varColor;
+}

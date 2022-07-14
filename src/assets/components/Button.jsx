@@ -1,5 +1,4 @@
 import '../styles/blocks/button.scss';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +21,7 @@ const PenIcon = (props) => {
 
 const TrashIcon = (props) => {
   const handleDelete = () => {
-    props.onClick(props.delete);
+    props.onClick(props.onDelete);
   };
 
   return (

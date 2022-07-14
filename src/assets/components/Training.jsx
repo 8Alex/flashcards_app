@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../styles/pages/training.scss';
 import FlashCard from './Flashcard';
-import data from '../../data.json';
-
+import { WordsContext } from '../context/Words';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 const Training = ({ choosenCard = 0 }) => {
+  const { wordsСollection } = useContext(WordsContext);
   const [index, setIndex] = useState(choosenCard);
   const [count, setCount] = useState(0);
   const [learnCard, setLearnCard] = useState([]);
@@ -19,8 +19,8 @@ const Training = ({ choosenCard = 0 }) => {
 
   const checkIndex = (index) => {
     if (index < 0) {
-      return data.length - 1;
-    } else if (index >= data.length) {
+      return wordsСollection.length - 1;
+    } else if (index >= wordsСollection.length) {
       return 0;
     }
     return index;
@@ -46,7 +46,7 @@ const Training = ({ choosenCard = 0 }) => {
     }
   };
 
-  const cards = data.map((card) => {
+  const cards = wordsСollection.map((card) => {
     return (
       <FlashCard
         key={card.id}
@@ -73,14 +73,14 @@ const Training = ({ choosenCard = 0 }) => {
           )}
         </div>
         <div>
-          {data && data.length > 0 ? (
+          {wordsСollection && wordsСollection.length > 0 ? (
             cards[index]
           ) : (
             <div className='flashcard__loading'>Loading...</div>
           )}
         </div>
         <div className='flashcard__navigation'>
-          {index < data.length - 1 ? (
+          {index < wordsСollection.length - 1 ? (
             <a className='flashcard__btn' onClick={nextCard}>
               <FontAwesomeIcon icon={faCircleRight} />
             </a>
@@ -92,9 +92,9 @@ const Training = ({ choosenCard = 0 }) => {
         </div>
       </div>
       <div>
-        {data && data.length > 0 ? (
+        {wordsСollection && wordsСollection.length > 0 ? (
           <div className='flashcard__count'>
-            Card {index + 1} of {data.length}
+            Card {index + 1} of {wordsСollection.length}
           </div>
         ) : (
           ''

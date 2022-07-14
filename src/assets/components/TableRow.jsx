@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/blocks/list.scss';
 import { PenIcon, TrashIcon, SaveIcon, CancelIcon } from './Button';
+import { WordsContext } from '../context/Words';
 
 const TableRow = (props) => {
-  // const [english, setEnglish] = useState(props.english);
-  // const [transcription, setTranscription] = useState(props.transcription);
-  // const [russian, setRussian] = useState(props.russian);
-  // const [tags, setTags] = useState(props.tags);
-
-  // const englishChange = (e) => {
-  //   setEnglish(e.target.value);
-  // };
-
-  // const transcriptionChange = (e) => {
-  //   setTranscription(e.target.value);
-  // };
-
-  // const russianChange = (e) => {
-  //   setRussian(e.target.value);
-  // };
-
-  // const tagsChange = (e) => {
-  //   setTags(e.target.value);
-  // };
-
   const [edit, setEdit] = useState(false);
   const [state, setState] = useState(props);
   const [errors, setErrors] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const { wordsСollection } = useContext(WordsContext);
 
   useEffect(() => {
     setState(props);
@@ -68,18 +49,13 @@ const TableRow = (props) => {
     setErrors(newErrors);
 
     let disabledCheck = Object.keys(newErrors).some((item) => {
-      if (newErrors[item] === undefined) {
-        return false;
-      } else {
-        return true;
-      }
+      return newErrors[item] !== undefined;
     });
     setDisabled(disabledCheck);
   };
 
   const handleSave = () => {
-    let data = JSON.parse(localStorage.getItem('data'));
-    data.forEach((element) => {
+    wordsСollection.forEach((element) => {
       if (element.id === state.id) {
         for (const key in element) {
           if (Object.hasOwnProperty.call(element, key)) {
@@ -88,8 +64,7 @@ const TableRow = (props) => {
         }
       }
     });
-    props.onEdit(data);
-    console.log(data);
+    props.onEdit(wordsСollection);
     setEdit(false);
   };
 
@@ -157,8 +132,8 @@ const TableRow = (props) => {
             <span className='table__errorMessage'>{errors.tags}</span>
           </td>
           <td className='table__icon'>
-            <SaveIcon onClick={handleSave} disabled={disabled}></SaveIcon>
-            <CancelIcon onClick={handleCancel}></CancelIcon>
+            <SaveIcon onClick={handleSave} disabled={disabled} />
+            <CancelIcon onClick={handleCancel} />
           </td>
         </tr>
       </tbody>
@@ -173,8 +148,8 @@ const TableRow = (props) => {
           <td className='table__hover'>{props.russian}</td>
           <td className='table__hover'>{props.tags}</td>
           <td className='table__icon'>
-            <PenIcon onClick={() => setEdit(true)}></PenIcon>
-            <TrashIcon onClick={props.delete}></TrashIcon>
+            <PenIcon onClick={() => setEdit(true)} />
+            <TrashIcon onClick={props.onDelete} />
           </td>
         </tr>
       </tbody>

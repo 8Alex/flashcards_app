@@ -5,20 +5,23 @@ import Training from './assets/components/Training';
 import NoMatch from './assets/components/NoMatch';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { WordsContextProvider } from './assets/context/Words';
 
 function App() {
   return (
     <Router>
       <div className='App'>
-        <PageHeader></PageHeader>
-        <main className='mainContainer'>
-          <Routes>
-            <Route path='/' element={<Table></Table>} />
-            <Route path='/game' element={<Training></Training>} />
-            <Route path='*' element={<NoMatch></NoMatch>} />
-          </Routes>
-        </main>
-        <PageFooter></PageFooter>
+        <PageHeader />
+        <WordsContextProvider>
+          <main className='mainContainer'>
+            <Routes>
+              <Route path='/' element={<Table />} />
+              <Route path='/game' element={<Training />} />
+              <Route path='*' element={<NoMatch />} />
+            </Routes>
+          </main>
+        </WordsContextProvider>
+        <PageFooter />
       </div>
     </Router>
   );
