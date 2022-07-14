@@ -3,13 +3,21 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+    // "next/babel",
+    // "next/core-web-vitals"
+  ],
   // "parser": "@babel/eslint-parser",
+  // "parser": "@babel-eslint",
   "parserOptions": {
     "parser": "babel-eslint",
     "ecmaFeatures": {
       "jsx": true,
-      "modules": true
+      "modules": true,
+      "experimentalObjectRestSpread": true
     },
     "babelOptions": {
       "presets": ["@babel/preset-react", "@babel/preset-env"]

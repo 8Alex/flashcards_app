@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import '../styles/pages/training.scss';
 import FlashCard from './Flashcard';
-import data from '../../data.json';
-
+import Error from './Error';
+import Loading from './Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { observer, inject } from 'mobx-react';
 
-const Training = ({ choosenCard = 0 }) => {
+const Training = ({ choosenCard = 0, wordsStore }) => {
   const [index, setIndex] = useState(choosenCard);
   const [count, setCount] = useState(0);
   const [learnCard, setLearnCard] = useState([]);
@@ -17,10 +18,14 @@ const Training = ({ choosenCard = 0 }) => {
     setIndex(newIndex);
   }, [choosenCard]);
 
+  useEffect(() => {
+    wordsStore.loadData();
+  }, []);
+
   const checkIndex = (index) => {
     if (index < 0) {
-      return data.length - 1;
-    } else if (index >= data.length) {
+      return wordsStore.words.length - 1;
+    } else if (index >= wordsStore.words.length) {
       return 0;
     }
     return index;
@@ -46,7 +51,15 @@ const Training = ({ choosenCard = 0 }) => {
     }
   };
 
-  const cards = data.map((card) => {
+  if (wordsStore.isLoading) {
+    return <Loading />;
+  }
+
+  if (wordsStore.error) {
+    return <Error />;
+  }
+
+  const cards = wordsStore.words.map((card) => {
     return (
       <FlashCard
         key={card.id}
@@ -73,14 +86,14 @@ const Training = ({ choosenCard = 0 }) => {
           )}
         </div>
         <div>
-          {data && data.length > 0 ? (
+          {wordsStore.words && wordsStore.words.length > 0 ? (
             cards[index]
           ) : (
             <div className='flashcard__loading'>Loading...</div>
           )}
         </div>
         <div className='flashcard__navigation'>
-          {index < data.length - 1 ? (
+          {index < wordsStore.words.length - 1 ? (
             <a className='flashcard__btn' onClick={nextCard}>
               <FontAwesomeIcon icon={faCircleRight} />
             </a>
@@ -92,9 +105,9 @@ const Training = ({ choosenCard = 0 }) => {
         </div>
       </div>
       <div>
-        {data && data.length > 0 ? (
+        {wordsStore.words && wordsStore.words.length > 0 ? (
           <div className='flashcard__count'>
-            Card {index + 1} of {data.length}
+            Card {index + 1} of {wordsStore.words.length}
           </div>
         ) : (
           ''
@@ -105,4 +118,4 @@ const Training = ({ choosenCard = 0 }) => {
   );
 };
 
-export default Training;
+export default inject(['wordsStore'])(observer(Training));
