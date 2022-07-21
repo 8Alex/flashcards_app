@@ -47,11 +47,7 @@ const TableRow = (props) => {
     setErrors(newErrors);
 
     let disabledCheck = Object.keys(newErrors).some((item) => {
-      if (newErrors[item] === undefined) {
-        return false;
-      } else {
-        return true;
-      }
+      return newErrors[item] !== undefined;
     });
     setDisabled(disabledCheck);
   };
