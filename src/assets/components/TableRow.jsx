@@ -3,27 +3,6 @@ import '../styles/blocks/list.scss';
 import { PenIcon, TrashIcon, SaveIcon, CancelIcon } from './Button';
 
 const TableRow = (props) => {
-  // const [english, setEnglish] = useState(props.english);
-  // const [transcription, setTranscription] = useState(props.transcription);
-  // const [russian, setRussian] = useState(props.russian);
-  // const [tags, setTags] = useState(props.tags);
-
-  // const englishChange = (e) => {
-  //   setEnglish(e.target.value);
-  // };
-
-  // const transcriptionChange = (e) => {
-  //   setTranscription(e.target.value);
-  // };
-
-  // const russianChange = (e) => {
-  //   setRussian(e.target.value);
-  // };
-
-  // const tagsChange = (e) => {
-  //   setTags(e.target.value);
-  // };
-
   const [edit, setEdit] = useState(false);
   const [state, setState] = useState(props);
   const [errors, setErrors] = useState({});
@@ -157,8 +136,8 @@ const TableRow = (props) => {
             <span className='table__errorMessage'>{errors.tags}</span>
           </td>
           <td className='table__icon'>
-            <SaveIcon onClick={handleSave} disabled={disabled}></SaveIcon>
-            <CancelIcon onClick={handleCancel}></CancelIcon>
+            <SaveIcon onClick={handleSave} disabled={disabled} />
+            <CancelIcon onClick={handleCancel} />
           </td>
         </tr>
       </tbody>
@@ -173,8 +152,8 @@ const TableRow = (props) => {
           <td className='table__hover'>{props.russian}</td>
           <td className='table__hover'>{props.tags}</td>
           <td className='table__icon'>
-            <PenIcon onClick={() => setEdit(true)}></PenIcon>
-            <TrashIcon onClick={props.delete}></TrashIcon>
+            <PenIcon onClick={() => setEdit(true)} />
+            <TrashIcon onClick={props.onDelete} />
           </td>
         </tr>
       </tbody>

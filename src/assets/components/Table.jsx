@@ -5,15 +5,6 @@ import data from '../../data.json';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const Table = () => {
-  // const [edit, setEdit] = useState();
-
-  // const handleCancel = () => {
-  //   setEdit(!edit);
-  // };
-
-  // const [newData, setData] = useState(data);
-  // localStorage.setItem('data', JSON.stringify(newData));
-
   const [newData, setData] = useLocalStorage('data', data);
 
   useEffect(() => {
@@ -22,12 +13,10 @@ const Table = () => {
 
   const handleDelete = (id) => {
     setData(newData.filter((word) => word.id !== id));
-    // localStorage.setItem('data', JSON.stringify(newData));
   };
 
   const handleUpdateList = (newData) => {
     setData(newData);
-    // localStorage.setItem('data', JSON.stringify(newData));
   };
 
   return (
@@ -52,11 +41,8 @@ const Table = () => {
             russian={word.russian}
             tags={word.tags}
             number={index + 1}
-            // isEdit={edit === i}
-            // edit={() => setEdit(i)}
-            // cancel={() => handleCancel(i)}
             onEdit={handleUpdateList}
-            delete={() => handleDelete(word.id)}
+            onDelete={() => handleDelete(word.id)}
           ></TableRow>
         ))}
       </table>
