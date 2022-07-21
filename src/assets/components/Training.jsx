@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import '../styles/pages/training.scss';
 import FlashCard from './Flashcard';
 import data from '../../data.json';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';

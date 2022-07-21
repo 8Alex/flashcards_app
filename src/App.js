@@ -10,15 +10,15 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <PageHeader></PageHeader>
+        <PageHeader />
         <main className='mainContainer'>
           <Routes>
-            <Route path='/' element={<Table></Table>} />
-            <Route path='/game' element={<Training></Training>} />
-            <Route path='*' element={<NoMatch></NoMatch>} />
+            <Route path='/' element={<Table />} />
+            <Route path='/game' element={<Training />} />
+            <Route path='*' element={<NoMatch />} />
           </Routes>
         </main>
-        <PageFooter></PageFooter>
+        <PageFooter />
       </div>
     </Router>
   );
