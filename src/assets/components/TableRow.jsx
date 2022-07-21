@@ -135,8 +135,8 @@ const TableRow = (props) => {
             <span className='table__errorMessage'>{errors.tags}</span>
           </td>
           <td className='table__icon'>
-            <SaveIcon onClick={handleSave} disabled={disabled}></SaveIcon>
-            <CancelIcon onClick={handleCancel}></CancelIcon>
+            <SaveIcon onClick={handleSave} disabled={disabled} />
+            <CancelIcon onClick={handleCancel} />
           </td>
         </tr>
       </tbody>
@@ -151,8 +151,8 @@ const TableRow = (props) => {
           <td className='table__hover'>{props.russian}</td>
           <td className='table__hover'>{props.tags}</td>
           <td className='table__icon'>
-            <PenIcon onClick={() => setEdit(true)}></PenIcon>
-            <TrashIcon onClick={props.onDelete}></TrashIcon>
+            <PenIcon onClick={() => setEdit(true)} />
+            <TrashIcon onClick={props.onDelete} />
           </td>
         </tr>
       </tbody>
