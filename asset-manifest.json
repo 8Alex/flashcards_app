@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/flashcards_app/static/css/main.685cc725.css",
+    "main.js": "/flashcards_app/static/js/main.896a143e.js",
+    "static/js/787.180aed71.chunk.js": "/flashcards_app/static/js/787.180aed71.chunk.js",
+    "static/media/Montserrat-Regular.ttf": "/flashcards_app/static/media/Montserrat-Regular.ac98a5f5ca71180fe293.ttf",
+    "static/media/img.png": "/flashcards_app/static/media/img.5923f823e2e55c8cda67.png",
+    "index.html": "/flashcards_app/index.html",
+    "main.685cc725.css.map": "/flashcards_app/static/css/main.685cc725.css.map",
+    "main.896a143e.js.map": "/flashcards_app/static/js/main.896a143e.js.map",
+    "787.180aed71.chunk.js.map": "/flashcards_app/static/js/787.180aed71.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.685cc725.css",
+    "static/js/main.896a143e.js"
+  ]
+}
