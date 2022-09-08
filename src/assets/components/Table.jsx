@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import '../styles/pages/table.scss';
 import TableRow from './TableRow';
 import { WordsContext } from '../context/Words';
@@ -7,6 +7,16 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
 
 const Table = () => {
+  const [isModalAddWord, setIsModalAddWord] = useState(false);
+
+  const showModalAddWord = () => {
+    setIsModalAddWord(true);
+  };
+
+  const handleCancelAddWord = () => {
+    setIsModalAddWord(false);
+  };
+
   const { wordsСollection, setWordsСollection, editWords, deleteWords } =
     useContext(WordsContext);
 
@@ -34,9 +44,22 @@ const Table = () => {
             <th>Tags</th>
             <th>
               Action
-              <a href='#openModal' className='button__icon button__icon_plus'>
+              <a
+                className='button__icon button__icon_plus'
+                onClick={showModalAddWord}
+              >
                 <FontAwesomeIcon icon={faPlus} />
               </a>
+              <Modal
+                visible={isModalAddWord}
+                onCancel={handleCancelAddWord}
+                key={Date.now()}
+                id={Date.now()}
+                english={'example'}
+                transcription={'[ɪɡˈzæmpl]'}
+                russian={'пример'}
+                tags={'другое'}
+              ></Modal>
             </th>
           </tr>
         </thead>
@@ -54,14 +77,6 @@ const Table = () => {
           ></TableRow>
         ))}
       </table>
-      <Modal
-        key={Date.now()}
-        id={Date.now()}
-        english={'example'}
-        transcription={'[ɪɡˈzæmpl]'}
-        russian={'пример'}
-        tags={'другое'}
-      ></Modal>
     </div>
   );
 };
