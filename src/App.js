@@ -4,7 +4,7 @@ import Table from './assets/components/Table';
 import Training from './assets/components/Training';
 import NoMatch from './assets/components/NoMatch';
 import './App.scss';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
