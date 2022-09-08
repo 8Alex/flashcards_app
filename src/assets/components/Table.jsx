@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/pages/table.scss';
 import TableRow from './TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,16 @@ import Loading from './Loading';
 import { observer, inject } from 'mobx-react';
 
 const Table = ({ wordsStore }) => {
+  const [isModalAddWord, setIsModalAddWord] = useState(false);
+
+  const showModalAddWord = () => {
+    setIsModalAddWord(true);
+  };
+
+  const handleCancelAddWord = () => {
+    setIsModalAddWord(false);
+  };
+
   useEffect(() => {
     wordsStore.loadData();
   }, []);
@@ -41,9 +51,22 @@ const Table = ({ wordsStore }) => {
             <th>Tags</th>
             <th>
               Action
-              <a href='#openModal' className='button__icon button__icon_plus'>
+              <a
+                className='button__icon button__icon_plus'
+                onClick={showModalAddWord}
+              >
                 <FontAwesomeIcon icon={faPlus} />
               </a>
+              <Modal
+                visible={isModalAddWord}
+                onCancel={handleCancelAddWord}
+                key={Date.now()}
+                id={Date.now()}
+                english={'example'}
+                transcription={'[ɪɡˈzæmpl]'}
+                russian={'пример'}
+                tags={'другое'}
+              ></Modal>
             </th>
           </tr>
         </thead>
@@ -61,14 +84,6 @@ const Table = ({ wordsStore }) => {
           ></TableRow>
         ))}
       </table>
-      <Modal
-        key={Date.now()}
-        id={Date.now()}
-        english={'example'}
-        transcription={'[ɪɡˈzæmpl]'}
-        russian={'пример'}
-        tags={'другое'}
-      ></Modal>
     </div>
   );
 };

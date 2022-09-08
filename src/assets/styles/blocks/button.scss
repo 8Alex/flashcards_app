@@ -30,3 +30,15 @@
   font-size: 20px;
   color: $varColor;
 }
+
+.button__icon_close {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.button__icon_close svg {
+  font-size: 20px;
+  color: $whiteColor;
+}

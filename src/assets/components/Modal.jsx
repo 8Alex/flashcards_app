@@ -22,10 +22,6 @@ const Modal = (props) => {
     });
   };
 
-  const handleClear = () => {
-    setItems(props);
-  };
-
   const checkForm = () => {
     const newErrorsForm = Object.keys(items).reduce((account, item) => {
       switch (item) {
@@ -53,21 +49,24 @@ const Modal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.wordsStore.addWords(items);
+    props.onCancel();
   };
 
   return (
-    <div id='openModal' className='modal__container'>
+    <div
+      className={
+        props.visible ? 'modal__container visible__modal' : 'modal__container'
+      }
+    >
       <div className='modal__innerContainer'>
         <div className='modal__header'>
           <a
-            href='#'
-            className='modal__closeBtn'
-            aria-label='close'
-            onClick={handleClear}
+            className='button__icon button__icon_close'
+            onClick={props.onCancel}
           >
             <FontAwesomeIcon icon={faXmark} />
           </a>
-          <h2 className='modal__innerTitle'>New word</h2>
+          <h2 className='modal__title'>New word</h2>
         </div>
         <form className='modal__form' onSubmit={handleSubmit}>
           <label htmlFor='english'>English:</label>
@@ -92,7 +91,7 @@ const Modal = (props) => {
           <span className='modal__errorMessage'>
             {errorsForm.transcription}
           </span>
-          <label htmlFor='russian'>Russian</label>
+          <label htmlFor='russian'>Russian:</label>
           <input
             className='modal__item'
             type='text'

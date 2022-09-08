@@ -1,4 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
+let url =
+  'https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words';
 export default class WordsStore {
   constructor() {
     this.words = [];
@@ -10,7 +12,7 @@ export default class WordsStore {
   async loadData() {
     this.isLoading = true;
 
-    await fetch('itgirlschool/api/words')
+    await fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -38,7 +40,7 @@ export default class WordsStore {
   }
 
   async editWords(id) {
-    await fetch(`itgirlschool/api/words/${id}/update`, {
+    await fetch(`${url}/${id}/update`, {
       method: 'POST',
       body: JSON.stringify(this.words.find((word) => word.id == id)),
       headers: {
@@ -61,7 +63,7 @@ export default class WordsStore {
   }
 
   async deleteWords(id) {
-    await fetch(`itgirlschool/api/words/${id}/delete`, {
+    await fetch(`${url}/${id}/delete`, {
       method: 'POST',
       body: JSON.stringify(this.words.filter((word) => word.id !== id)),
       headers: {
@@ -84,7 +86,7 @@ export default class WordsStore {
   }
 
   async addWords(word) {
-    await fetch('itgirlschool/api/words/add', {
+    await fetch(`${url}/add`, {
       method: 'POST',
       body: JSON.stringify(word),
       headers: {

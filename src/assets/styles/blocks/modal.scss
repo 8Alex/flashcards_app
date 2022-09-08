@@ -11,24 +11,21 @@
   justify-content: center;
   align-items: center;
   color: $varColor;
-}
-
-.modal__innerContainer {
-  width: 60%;
-  height: 62%;
-  background: $whiteColor;
-}
-
-.modal__container:not(:target) {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s, visibility 1s;
 }
 
-.modal__container:target {
+.modal__container.visible__modal {
   opacity: 1;
   visibility: visible;
   transition: opacity 1s, visibility 1s;
+}
+
+.modal__innerContainer {
+  width: 60%;
+  height: 570px;
+  background: $whiteColor;
 }
 
 .modal__header {
@@ -36,7 +33,7 @@
   padding: 20px;
 }
 
-.modal__innerTitle {
+.modal__title {
   font-size: 23px;
   color: $whiteColor;
 }
@@ -53,27 +50,16 @@
   margin-bottom: 5px;
 }
 
-.modal__closeBtn {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.modal__closeBtn svg {
-  font-size: 20px;
-  color: $whiteColor;
-}
-
 .modal__addBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .modal__addBtn button {
   width: 50%;
   height: 30%;
-  margin-top: 15px;
   color: $varColor;
   font-size: 16px;
   background-color: $varColor;
@@ -85,6 +71,7 @@
 
   &:hover {
     cursor: pointer;
+    opacity: 0.9;
   }
 }
 
@@ -93,11 +80,12 @@
 
   &:hover {
     cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
 .modal__errorMessage {
   font-size: 12px;
   color: red;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
