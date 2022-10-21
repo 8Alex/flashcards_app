@@ -1,5 +1,10 @@
 # English Dictionary
 ### Приложение для изучения английских слов
+
+![words](https://user-images.githubusercontent.com/91260590/197161967-48a4ad3b-a204-4128-bbfd-e22b59c4958f.png)
+
+![game](https://user-images.githubusercontent.com/91260590/197161990-05ee5cb4-c60e-46f0-ac1c-235d6b49fd7e.png)
+
 #### Используемые технологии:
 + JavaScript
 + React
@@ -18,3 +23,4 @@ cd flashcards_app
 npm install  
 npm start
 ```
+
